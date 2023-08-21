@@ -1,0 +1,7 @@
+my_new_project:
+  target: dev
+  outputs:
+    dev:
+      database: dev
+      schema: dbt-demo-396606
+      threads: 4
