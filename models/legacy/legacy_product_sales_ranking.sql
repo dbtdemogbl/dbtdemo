@@ -36,3 +36,4 @@ from (
 left join raws.product_data
   using(product_id)
 group by product_id
+order by sales desc
