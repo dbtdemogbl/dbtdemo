@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: raws
+    tables:
+      - name: purchase_data
+      - name: product_data
