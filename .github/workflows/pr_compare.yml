@@ -20,13 +20,16 @@ jobs:
       run: |
         mkdir ~/.dbt
         cat << EOF > ~/.dbt/profiles.yml
-        my_new_project:
-          target: default
+        default:
+          target: bigquery
           outputs:
-            default:
-              type:      bigquery
-              database:  dbt-demo
-              schema:    dbt-demo-396606
+            bigquery:
+              type: bigquery
+              method: service-account
+              keyfile: ${{ secrets.DBT_GOOGLE_KEYFILE }}
+              project: dbt-demo-396606
+              dataset: marts
+              threads: 4
         EOF
         cat ~/.dbt/profiles.yml
 

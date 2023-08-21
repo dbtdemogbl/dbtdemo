@@ -1,7 +1,10 @@
-my_new_project:
-  target: default
+default:
+  target: bigquery
   outputs:
-    default:
-      database: dbt-demo-396606
-      schema: marts
+    bigquery:
+      type: bigquery
+      method: service-account
+      keyfile: "{{ env_var('DBT_GOOGLE_KEYFILE') }}"
+      project: "dbt-demo-396606"
+      dataset: "marts"
       threads: 4
