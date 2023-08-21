@@ -16,6 +16,20 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: set profiles
+      run: |
+        mkdir ~/.dbt
+        cat << EOF > ~/.dbt/profiles.yml
+        my_new_project:
+          target: default
+          outputs:
+            default:
+              type:      bigquery
+              database:  dbt-demo
+              schema:    dbt-demo-396606
+        EOF
+        cat ~/.dbt/profiles.yml
+
     - name: PipeRider Compare
       uses: InfuseAI/piperider-compare-action@v1
       env: 
