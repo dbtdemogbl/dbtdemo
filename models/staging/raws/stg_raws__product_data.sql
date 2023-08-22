@@ -1,19 +1,19 @@
-with
+with 
 
 source as (
 
-  select * from {{ source('raws', 'product_data') }}
+    select * from {{ source('raws', 'product_data') }}
 
 ),
 
 renamed as (
 
-  select
-    product_id,
-    product_name,
-    price
+    select
+        product_id,
+        product_name,
+        price
 
-  from source
+    from source
 
 )
 

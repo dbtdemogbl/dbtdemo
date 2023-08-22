@@ -1,11 +1,10 @@
-with exclude_lowest_sales_user as (
+with
+exclude_lowest_sales_user as (
   select * from {{ ref('exclude_lowest_sales_user') }}
 ),
-
 product_data as (
   select * from {{ ref('stg_raws__product_data') }}
 ),
-
 final as (
   select
     exclude_lowest_sales_user.product_id,
@@ -16,6 +15,5 @@ final as (
   group by product_id
   order by sales desc
 )
-
 select *
 from final

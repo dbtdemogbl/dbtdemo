@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: product_sales_ranking
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('legacy_product_sales_ranking')

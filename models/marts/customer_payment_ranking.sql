@@ -7,7 +7,7 @@ product_data as (
   select * from {{ ref('stg_raws__product_data') }}
 ),
 
-logical_sales as (
+sales as (
   select customer_id, sum(price) as total_price
   from
     (
@@ -18,16 +18,10 @@ logical_sales as (
       from purchase_data
       left join product_data using (product_id)
     )
-  group by customer_id
-),
-
-final as (
-
-  select
-    customer_id, total_price, rank() over (order by total_price desc) as rank
-  from logical_sales
-  order by rank asc
+  group by
+    customer_id
 )
 
-select *
-from final
+select customer_id, total_price, rank() over (order by total_price desc) as rank
+from sales
+order by rank asc
