@@ -1,0 +1,10 @@
+default:
+  target: bigquery
+  outputs:
+    bigquery:
+      type: bigquery
+      method: service-account
+      keyfile: "{{ env_var('DBT_GOOGLE_KEYFILE') }}"
+      project: "dbt-demo-396606"
+      dataset: "marts"
+      threads: 4
